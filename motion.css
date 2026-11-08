@@ -1,0 +1,49 @@
+header{position:sticky;top:0;z-index:20;background:#faf7ebf5;isolation:isolate}
+header::after{content:'';position:absolute;inset:0;z-index:-1;box-shadow:0 6px 25px #284d3815;opacity:0;transition:opacity 250ms}
+header.is-scrolled::after{opacity:1}
+nav a{position:relative;min-height:44px;display:inline-flex;align-items:center;border:0}
+nav a::after{content:'';position:absolute;left:0;right:0;bottom:3px;height:2px;background:#6a8450;transform:scaleX(0);transform-origin:left;transition:transform 220ms cubic-bezier(.23,1,.32,1)}
+nav a:hover::after,nav a[aria-current=location]::after{transform:scaleX(1)}
+.scene-progress{position:fixed;inset:0 0 auto;height:3px;z-index:30;background:#6a8450;transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+.painting{inset:-14px;transform:scale(1.035)}
+.hero-copy{position:relative;z-index:2}
+.hero-copy h1 span,.hero-copy h1 em{animation:headline-arrive 850ms cubic-bezier(.23,1,.32,1) backwards}
+.hero-copy h1 span:nth-child(2){animation-delay:100ms}
+.hero-copy h1 em{animation-delay:190ms}
+.hero-copy .eyebrow{animation:soft-arrive 750ms ease-out backwards}
+.hero-copy>p{animation:soft-arrive 800ms 220ms ease-out backwards}
+.hero-copy .actions{animation:soft-arrive 800ms 300ms ease-out backwards}
+.sunlight{animation:light 15s ease-in-out infinite alternate}
+.scene-dust{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.scene-dust i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff7da;opacity:0;animation:morning-dust 16s ease-in-out infinite;box-shadow:0 0 7px #fff5caaa}
+.scene-dust i:nth-child(1){left:60%;top:31%;animation-delay:-3s}
+.scene-dust i:nth-child(2){left:80%;top:49%;width:3px;height:3px;animation-delay:-10s}
+.scene-dust i:nth-child(3){left:68%;top:71%;width:4px;height:4px;animation-delay:-7s}
+.scene-dust i:nth-child(4){left:88%;top:22%;width:3px;height:3px;animation-delay:-13s}
+.art-note{z-index:3;transition:transform 250ms}
+.art-note:hover{transform:rotate(0) translateY(-3px)}
+.motion-pending{opacity:0;transform:translateY(22px)}
+.recipe{perspective:900px}
+.recipe figure{position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform 220ms cubic-bezier(.23,1,.32,1)}
+.recipe figure::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,#fffdf63b 48%,transparent 72%);transform:translateX(-130%);pointer-events:none;opacity:0}
+.recipe:hover figure::after{animation:photo-light-pass 850ms ease-out}
+.recipe small{display:inline-block;transition:transform 180ms}
+.recipe:hover small{transform:translateX(4px)}
+.cta{position:relative;overflow:hidden;isolation:isolate}
+.cta>span{transition:transform 200ms}
+.cta:hover>span{transform:translateX(4px)}
+.tap-glow{position:absolute;width:24px;height:24px;border-radius:50%;background:#fffdf580;z-index:-1;pointer-events:none;transform:translate(-50%,-50%)}
+.motion-toggle{min-height:44px;position:fixed;right:18px;bottom:18px;z-index:25;box-shadow:0 3px 15px #284d3815;background:#faf7ebf5;transition:transform 180ms}
+.motion-toggle:hover{transform:translateY(-2px)}
+footer{padding-right:210px}
+@keyframes headline-arrive{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes soft-arrive{from{opacity:.2;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes morning-dust{0%,100%{opacity:0;transform:translate3d(0,12px,0) scale(.7)}25%,70%{opacity:.6}80%{opacity:0;transform:translate3d(-35px,-55px,0) scale(1)}}
+@keyframes photo-light-pass{0%{opacity:0;transform:translateX(-130%)}30%{opacity:.7}100%{opacity:0;transform:translateX(130%)}}
+html[data-motion=off] .painting{transform:none!important}
+html[data-motion=off] .scene-dust,html[data-motion=off] .scene-progress{display:none}
+html[data-motion=off] *::after{animation:none!important;transition:none!important}
+html[data-motion=off] .motion-pending{opacity:1;transform:none}
+html[data-motion=off] .recipe:hover figure,html[data-motion=off] .recipe:hover small,html[data-motion=off] .cta:hover>span,html[data-motion=off] .art-note:hover{transform:none!important}
+@media(max-width:600px){.scene-dust i:nth-child(n+3){display:none}.motion-toggle{right:12px;bottom:12px;font-size:12px;padding:7px 11px}footer{padding-bottom:82px;padding-right:6%}}
+@media(prefers-reduced-motion:reduce){.painting{transform:none!important}.scene-dust,.scene-progress{display:none}.motion-pending{opacity:1;transform:none}.recipe:hover figure,.recipe:hover small,.cta:hover>span,.art-note:hover{transform:none!important}*::after{animation:none!important;transition:none!important}header::after,nav a::after,.motion-toggle{transition:none!important}}
